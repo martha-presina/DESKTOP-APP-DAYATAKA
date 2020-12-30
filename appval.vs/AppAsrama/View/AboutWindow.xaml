@@ -1,0 +1,34 @@
+﻿<Window x:Class="AppAsrama.View.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppAsrama.View"
+        mc:Ignorable="d"
+        Title="About Us" Height="500" Width="700" WindowStartupLocation="CenterScreen" Icon="../Image/DAYATAKA.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Image Source="..\Image\IMG-20181218-WA0009.jpg" HorizontalAlignment="Center" Stretch="Fill" Height="200"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="Our Team :" FontSize="14" FontWeight="Bold" Margin="0,20,0,0"/>
+            <Label Content="Bill Gani as System Analyst" FontSize="12" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            <Label Content="Martha Presina as Programmer" FontSize="12" HorizontalAlignment="Center"/>
+            <Label Content="Valoryan J K as Database Administrator" FontSize="12" HorizontalAlignment="Center"/>
+            <Label Content="Yan Gurin Ivanda as Designer" FontSize="12" HorizontalAlignment="Center"/>
+            <Label Content="Youse Nur Fauzi as Advisor" FontSize="12" HorizontalAlignment="Center"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,163 @@
+﻿<Page x:Class="AppAsrama.View.MemberPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppAsrama.View"
+      mc:Ignorable="d" 
+      Title="MemberPage" Height="720" Width="1221" Margin="0,-415,0,0">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Height="85" Background="#FF00A956">
+                <Label x:Name="lblJudul" Content="MEMBER LIST" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="#FF1A2527"/>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Button x:Name="btnMember" Content="Member List" Height="25" Width="130" FontSize="12" HorizontalAlignment="Left" Background="#FF033D22" Foreground="White" IsEnabled="False"/>
+            <Button x:Name="btnPengurus" Content="Management List" Height="25" Width="130" FontSize="12" HorizontalAlignment="Left" Margin="130 0" Background="#FF033D22" Foreground="White" Click="btnPengurus_Click"/>
+        </Grid>
+        <Grid Grid.Row="5" Background="#FFF4F4F4" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.Row="1" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="ID Number" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+                <Label Content="Name" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
+                <Label Content="Place of Birth" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+                <Label Content="Date of Birth" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
+                <Label Content="Gender" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" />
+                <Label Content="Address" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" />
+                <TextBox x:Name="txtNIK" Text="{Binding ElementName=dgMember, Path=SelectedItem.nik}" FontSize="12" Foreground="#FF00A651" Height="22" Width="150" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,4"/>
+                <TextBox x:Name="txtNama" Text="{Binding ElementName=dgMember, Path=SelectedItem.nama}" FontSize="12" Foreground="#FF00A651" Height="23" Width="350" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <TextBox x:Name="txtTmpt_lahir" Text="{Binding ElementName=dgMember, Path=SelectedItem.tmpt_lahir}" FontSize="12" Foreground="#FF00A651" Height="23" Width="200" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <DatePicker x:Name="dpTgl_lahir" Text="{Binding ElementName=dgMember, Path=SelectedItem.tgl_lahir}" FontSize="12" Foreground="#FF00A651" Height="23" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+                <ComboBox x:Name="cmbJK" Text="{Binding ElementName=dgMember, Path=SelectedItem.jk}" FontSize="12" Foreground="#FF00A651" Height="23" Width="100" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Male"/>
+                    <ComboBoxItem Content="Female"/>
+                </ComboBox>
+                <TextBox x:Name="txtAlamat" Text="{Binding ElementName=dgMember, Path=SelectedItem.alamat}" FontSize="12" Foreground="#FF00A651" Height="23" Width="350" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnTambah" Content="Add" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="0" Click="btnTambah_Click" />
+                <Button x:Name="btnSimpan" Content="Save" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="1" Click="btnSimpan_Click" />
+                <Button x:Name="btnHapus" Content="Delete" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="2" Click="btnHapus_Click" />
+                <Button x:Name="btnUpdate" Content="Update" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="3" Click="btnUpdate_Click" />
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="1" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="Religion" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+                <Label Content="Phone Number" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" />
+                <Label Content="Email" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+                <Label Content="Blood Type" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
+                <Label Content="Room" FontSize="12" Foreground="Black" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" />
+                <ComboBox x:Name="cmbAgama" Text="{Binding ElementName=dgMember, Path=SelectedItem.agama}" FontSize="12" Foreground="#FF00A651" Height="23" Width="200" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <ComboBoxItem Content="Islam"/>
+                    <ComboBoxItem Content="Protestan"/>
+                    <ComboBoxItem Content="Katholik"/>
+                    <ComboBoxItem Content="Hindu"/>
+                    <ComboBoxItem Content="Budha"/>
+                    <ComboBoxItem Content="Konghuchu"/>
+                </ComboBox>
+                <TextBox x:Name="txtNo_hp" Text="{Binding ElementName=dgMember, Path=SelectedItem.no_hp}" FontSize="12" Foreground="#FF00A651" Height="23" Width="200" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtEmail" Text="{Binding ElementName=dgMember, Path=SelectedItem.email}" FontSize="12" Foreground="#FF00A651" Height="23" Width="350" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,4"/>
+                <TextBox x:Name="txtGol_darah" Text="{Binding ElementName=dgMember, Path=SelectedItem.gol_darah}" FontSize="12" Foreground="#FF00A651" Height="23" Width="50" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,4"/>
+                <TextBox x:Name="txtNo_kamar" Text="{Binding ElementName=dgMember, Path=SelectedItem.no_kamar}" FontSize="12" Foreground="#FF00A651" Height="23" Width="50" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Button x:Name="btnCancel" Content="Cancel" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10 0" Click="btnCancel_Click" />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="105"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Label Content="Input ID or Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" Foreground="#FF00A651"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox x:Name="txtCari" FontSize="12" Foreground="#FF00A651" Height="23"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Button x:Name="btnCari" Content="Search" Width="90" Height="23" FontSize="12" Background="#FF00A651" Grid.Column="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnCari_Click" />
+                </Grid>
+                <Grid Grid.Column="3">
+                    <Button x:Name="btnRefresh" Content="Refresh" Width="90" Height="23" FontSize="12" Background="#FF00A651" Grid.Column="3" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnRefresh_Click" />
+                </Grid>
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="3">
+            <Label Content="Member Table" FontSize="12" Foreground="#FF00A651" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <Grid Grid.Row="4" Margin="0,0,0,10">
+            <DataGrid x:Name="dgMember" x:Uid="dgMember" ItemsSource="{Binding}" Height="auto" AutoGenerateColumns="False" SelectedIndex="0" BorderBrush="#FF00A956">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path = nik}" Header="ID Number" Width="120" />
+                    <DataGridTextColumn Binding="{Binding Path = nama}" Header="Name" Width="150" />
+                    <DataGridTextColumn Binding="{Binding Path = tmpt_lahir}" Header="Place of Birth" Width="100" />
+                    <DataGridTextColumn Binding="{Binding Path = tgl_lahir, StringFormat=dd/MM/yyyy}" Header="Date of Birth" Width="100" />
+                    <DataGridTextColumn Binding="{Binding Path = jk}" Header="Gender" Width="50" />
+                    <DataGridTextColumn Binding="{Binding Path = alamat}" Header="Address" Width="200" />
+                    <DataGridTextColumn Binding="{Binding Path = agama}" Header="Religion" Width="86" />
+                    <DataGridTextColumn Binding="{Binding Path = no_hp}" Header="Phone Number" Width="100" />
+                    <DataGridTextColumn Binding="{Binding Path = email}" Header="Email" Width="150" />
+                    <DataGridTextColumn Binding="{Binding Path = gol_darah}" Header="Blood Type" Width="80" />
+                    <DataGridTextColumn Binding="{Binding Path = no_kamar}" Header="Room" Width="90" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

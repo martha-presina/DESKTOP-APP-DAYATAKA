@@ -1,0 +1,99 @@
+﻿<Page x:Class="AppAsrama.View.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppAsrama.View"
+      mc:Ignorable="d" 
+      Title="ReportPage" Height="720" Width="1221" Margin="0,-415,0,0">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Background="#FF00A956" Height="85">
+                <Label x:Name="lblJudul" Content="MONTHLY RECAP" FontSize="30" FontWeight="Bold" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="#FF1A2527"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Button x:Name="btnMonthly" Content="Monthly Recap" Height="25" Width="130" FontSize="12" HorizontalAlignment="Left" Background="#FF033D22" Foreground="White" IsEnabled="False"/>
+            <Button x:Name="btnAdd" Content="Add Report" Height="25" Width="130" FontSize="12" HorizontalAlignment="Left" Margin="130,-25,0,0" Background="#FF033D22" Foreground="White" Click="btnAdd_Click"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnDetail" Content="Detail" Width="80" Height="30" FontSize="12" Background="#FF00A956" Foreground="White" Grid.Column="0" Click="btnDetail_Click"/>
+            <Button x:Name="btnRefresh" Content="Refresh" Width="90" Height="23" FontSize="12" Background="#FF00A651" Grid.Column="2" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnRefresh_Click" />
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Label Content="Recap Table" HorizontalAlignment="Center" FontSize="12" Foreground="#FF00A651" Margin="10 0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Label Content="Detail Recap Table" HorizontalAlignment="Center" FontSize="12" Foreground="#FF00A651" Margin="10 0"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <DataGrid x:Name="dgRecap" x:Uid="dgRecap" ItemsSource="{Binding}" Height="auto" AutoGenerateColumns="False" SelectedIndex="0" BorderBrush="#FF00A956" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = bulan, StringFormat=MM}" Header="Month" Width="50" />
+                        <DataGridTextColumn Binding="{Binding Path = tahun, StringFormat=yyyy}" Header="Year" Width="50" />
+                        <DataGridTextColumn Binding="{Binding Path = tot_masuk}" Header="Total Income" Width="90" />
+                        <DataGridTextColumn Binding="{Binding Path = tot_keluar}" Header="Total Spending" Width="90" />
+                        <DataGridTextColumn Binding="{Binding Path = saldo}" Header="Balance" Width="95" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20 0">
+                <DataGrid x:Name="dgDetail" x:Uid="dgDetail" ItemsSource="{Binding}" Height="auto" AutoGenerateColumns="False" SelectedIndex="0" BorderBrush="#FF00A956" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = kd_keu}" Header="Financial Code" Width="120" />
+                        <DataGridTextColumn Binding="{Binding Path = tgl, StringFormat=dd/MM/yyyy}" Header="Date" Width="100" />
+                        <DataGridTextColumn Binding="{Binding Path = id_Login}" Header="ID Login" Width="120" />
+                        <DataGridTextColumn Binding="{Binding Path = nama}" Header="Management" Width="200" />
+                        <DataGridTextColumn Binding="{Binding Path = jml_masuk}" Header="Income" Width="100" />
+                        <DataGridTextColumn Binding="{Binding Path = jml_keluar}" Header="Spending" Width="100" />
+                        <DataGridTextColumn Binding="{Binding Path = keterangan}" Header="Information" Width="350" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <DataGrid Visibility="Hidden" x:Name="dgSaldo" x:Uid="dgSaldo" ItemsSource="{Binding}" Height="auto" AutoGenerateColumns="False" SelectedIndex="0" BorderBrush="#FF00A956" Grid.ColumnSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path = tot_masuk}" Header="Total Income" Width="100" />
+                        <DataGridTextColumn Binding="{Binding Path = tot_keluar}" Header="Total Spending" Width="100" />
+                        <DataGridTextColumn Binding="{Binding Path = tot_saldo}" Header="Total Spending" Width="100" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Total Balance : Rp." FontSize="12" Foreground="#FF00A651" HorizontalAlignment="Right" Margin="0,10,50,10"/>
+                <Label x:Name="lblTotSaldo" Content="{Binding ElementName=dgSaldo, Path=SelectedItem.tot_saldo}" FontSize="12" Foreground="#FF00A651" Width="50" HorizontalAlignment="Right" Margin="10"/>
+                <TextBox x:Name="txtBulan" Visibility="Hidden" IsEnabled="False" Text="{Binding ElementName=dgRecap, Path=SelectedItem.bulan}" FontSize="12" Foreground="#FF00A651" Height="22" Width="50" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtTahun" Visibility="Hidden" IsEnabled="False" Text="{Binding ElementName=dgRecap, Path=SelectedItem.tahun}" FontSize="12" Foreground="#FF00A651" Height="22" Width="50" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
